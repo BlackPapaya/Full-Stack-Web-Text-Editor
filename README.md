@@ -22,3 +22,9 @@ No cloud server needed, can be saved locally as text files.
 - Gradle
 - Browser
 - Text editor + IDE
+
+
+[![Java](https://img.shields.io/badge/Java-21%2B-orange?style=flat-square&logo=java)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen?style=flat-square&logo=springboot)](https://spring.io/projects/spring-boot)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-blue?style=flat-square&logo=sqlite)](https://www.sqlite.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)

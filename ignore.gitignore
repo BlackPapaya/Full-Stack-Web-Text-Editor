@@ -1,0 +1,10 @@
+# IntelliJ / Spring Boot
+**/target/
+**/.idea/
+*.iml
+.mvn/
+
+# Frontend (Node)
+**/node_modules/
+**/dist/
+.env

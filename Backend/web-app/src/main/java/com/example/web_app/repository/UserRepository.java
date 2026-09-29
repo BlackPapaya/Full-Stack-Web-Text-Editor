@@ -1,4 +1,4 @@
-package com.example.web_app;
+package com.example.web_app.repository;
 
 import com.example.web_app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -22,6 +22,17 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Spring Data JPA für die Datenbank-Abfragen
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Spring Web (falls noch nicht da, für die Controller)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// SQLite JDBC Treiber
+	implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
+
+	// Hibernate Dialect für SQLite (wichtig für moderne Spring Boot Versionen)
+	implementation 'org.hibernate.orm:hibernate-community-dialects:6.4.4.Final'
 }
 
 tasks.named('test') {

@@ -1,6 +1,6 @@
-package com.example.web_app;
-import jakarta.persistence.*;
+package com.example.web_app.model;
 
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -16,6 +16,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    // NEU: Das Feld für den Editor-Text (TEXT-Typ für längere Texte)
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
     public User() {}
 
     public User(String username, String password) {
@@ -23,6 +27,7 @@ public class User {
         this.password = password;
     }
 
+    // Getter und Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -31,4 +36,8 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    // NEU: Getter und Setter für den Content
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 }

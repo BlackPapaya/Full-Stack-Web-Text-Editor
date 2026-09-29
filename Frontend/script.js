@@ -1,5 +1,5 @@
 let loggedInUser = null;
-// 1. Text aus dem Editor im Browser (localStorage) speichern
+// 1. Save in Browser
 document.getElementById('saveLocalBtn').addEventListener('click', function() {
 const textContent = document.getElementById('textEditor').value;
 localStorage.setItem('papayaText', textContent);
@@ -7,7 +7,7 @@ document.getElementById('editorMessage').style.color = 'green';
 document.getElementById('editorMessage').textContent = "Text lokal im Browser gespeichert!";
 });
 
-// Beim Laden der Seite prüfen, ob es einen gespeicherten Text gibt
+// check if there is saved text file already
 window.addEventListener('load', function() {
 const savedText = localStorage.getItem('papayaText');
 if (savedText) {
@@ -15,7 +15,7 @@ document.getElementById('textEditor').value = savedText;
 }
 });
 
-// 2. Als .txt-Datei auf den PC herunterladen
+// 2. download as txt file on the pc
 document.getElementById('downloadBtn').addEventListener('click', function() {
 const textContent = document.getElementById('textEditor').value;
 const blob = new Blob([textContent], { type: 'text/plain' });
@@ -30,11 +30,11 @@ document.body.removeChild(a);
 URL.revokeObjectURL(url);
 });
 
-// 3. In der Spring Boot Datenbank abspeichern
+// 3.Save in SpringBoot Database
 document.getElementById('saveToDbBtn').addEventListener('click', async function() {
 const currentUser = localStorage.getItem('papayaUser');
 
-// Prüfen, ob überhaupt jemand im localStorage hinterlegt ist
+// check if acc is in local Storage
 if (!currentUser) {
 alert("Du musst zuerst eingeloggt sein, um in der Datenbank zu speichern!");
 return;
@@ -42,7 +42,7 @@ return;
 
 const textContent = document.getElementById('textEditor').value;
 
-// Direkt das Objekt übergeben (ohne {dataToSend} drumherum)
+// sending the Object
 const dataToSend = {
 username: currentUser,
 content: textContent
@@ -52,7 +52,7 @@ try {
 const response = await fetch('http://localhost:8080/api/save-text', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(dataToSend) // <--- Ohne extra geschweifte Klammern!
+    body: JSON.stringify(dataToSend) 
 });
 
 const resultText = await response.text();
@@ -69,9 +69,9 @@ if (response.ok) {
 console.error('Fehler:', error);
 }
 });
-// Das Formular abfangen und per JavaScript (Fetch API) an Spring Boot schicken
+// Catch formula and send with fetch to Springboot
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Verhindert das Neuladen der Seite
+    e.preventDefault(); // prevents restarting the site
 
     const usernameInput = document.getElementById('username').value;
     const passwordInput = document.getElementById('password').value;

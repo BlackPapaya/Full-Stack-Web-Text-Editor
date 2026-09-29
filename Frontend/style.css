@@ -1,18 +1,19 @@
 body {
     font-family: Arial, sans-serif;
+    font-size: 40;
     max-width: 800px;
     margin: 40px auto;
-    padding: 0 20px;
-    background-color: lightblue; /* Ein sanfter, warmer Hintergrund */
+    padding: 0 40px;
+    background-color: lightblue; 
     color: #333;
 }
 
 h1, h2 {
-    color: #d35400; /* Ein schöner Papaya-Orangeton */
+    color: #d35400; 
 }
 
 form, div {
-    background: #ffffff;
+    background: lightblue;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -21,7 +22,7 @@ form, div {
 
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: bold;
 }
 
@@ -39,11 +40,12 @@ input[type="password"] {
 
 textarea {
     width: 100%;
-    padding: 12px;
+    height: 200%;
+    padding: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: monospace;
-    font-size: 14px;
+    font-size: 30px;
     box-sizing: border-box;
     resize: vertical;
 }

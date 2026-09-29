@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Papaya Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>PAPAYA EDITOR</h1>
+    <p>Create and edit your Textfile online without using a Cloud!</p>
+
+    <!-- Wichtig: Eine ID hinzugefügt, damit das JavaScript das Formular findet -->
+    <form id="registerForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Platzhalter für Erfolgs- oder Fehlermeldungen -->
+    <p id="message" style="font-weight: bold;"></p>
+
+    <hr>
+
+    <!-- Zusätzliche Elemente, falls du sie für den Login brauchst -->
+    <!-- <input type="password"> -->
+    <!-- <button type="button">login here</button> -->
+    
+    <img src="src/mimi.png" width="500" height="500" alt="Mimi">
+
+    <script>
+        // Das Formular abfangen und per JavaScript (Fetch API) an Spring Boot schicken
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Verhindert das Neuladen der Seite
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+            const userData = {
+                username: usernameInput,
+                password: passwordInput
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const resultText = await response.text();
+                const messageElement = document.getElementById('message');
+
+                if (response.ok) {
+                    messageElement.style.color = 'green';
+                    messageElement.textContent = resultText;
+                } else {
+                    messageElement.style.color = 'red';
+                    messageElement.textContent = "Fehler: " + resultText;
+                }
+            } catch (error) {
+                console.error('Fehler bei der Verbindung zum Backend:', error);
+            }
+        });
+    </script>
+</body>
+</html>

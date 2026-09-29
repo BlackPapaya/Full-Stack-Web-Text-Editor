@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Header / Titel der Anwendung -->
     <h1>PAPAYA EDITOR</h1>
     <p>Create and edit your Textfile online without using a Cloud!</p>
 
-    <!-- Wichtig: Eine ID hinzugefügt, damit das JavaScript das Formular findet -->
+    <!-- 1. Registrierungs-Formular -->
     <form id="registerForm">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -19,54 +21,43 @@
         
         <button type="submit">Register</button>
     </form>
-
-    <!-- Platzhalter für Erfolgs- oder Fehlermeldungen -->
-    <p id="message" style="font-weight: bold;"></p>
+    <p id="message"></p>
 
     <hr>
 
-    <!-- Zusätzliche Elemente, falls du sie für den Login brauchst -->
-    <!-- <input type="password"> -->
-    <!-- <button type="button">login here</button> -->
-    
-    <img src="src/mimi.png" width="500" height="500" alt="Mimi">
+    <!-- Maskottchen / Bild -->
+    <img src="src/mimi.png" width="300" height="300" alt="Mimi">
 
-    <script>
-        // Das Formular abfangen und per JavaScript (Fetch API) an Spring Boot schicken
-        document.getElementById('registerForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Verhindert das Neuladen der Seite
+    <!-- 2. Login-Bereich -->
+    <h2>Login</h2>
+    <div id="loginSection">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required>
+        
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required>
 
-            const usernameInput = document.getElementById('username').value;
-            const passwordInput = document.getElementById('password').value;
+        <button type="button" id="loginBtn">Login</button>
+    </div>
+    <p id="loginMessage"></p>
 
-            const userData = {
-                username: usernameInput,
-                password: passwordInput
-            };
+    <hr>
 
-            try {
-                const response = await fetch('http://localhost:8080/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(userData)
-                });
+    <!-- 3. Texteditor-Bereich -->
+    <div id="editorSection">
+        <h2>Papaya Text Editor</h2>
+        <textarea id="textEditor" rows="15" cols="80" placeholder="Schreib hier deinen Text..."></textarea>
 
-                const resultText = await response.text();
-                const messageElement = document.getElementById('message');
+        <br>
 
-                if (response.ok) {
-                    messageElement.style.color = 'green';
-                    messageElement.textContent = resultText;
-                } else {
-                    messageElement.style.color = 'red';
-                    messageElement.textContent = "Fehler: " + resultText;
-                }
-            } catch (error) {
-                console.error('Fehler bei der Verbindung zum Backend:', error);
-            }
-        });
-    </script>
+        <button id="saveLocalBtn">Lokal speichern (Browser)</button>
+        <button id="downloadBtn">Als .txt herunterladen</button>
+        <button id="saveToDbBtn">In Datenbank speichern (Backend)</button>
+
+        <p id="editorMessage"></p>
+    </div>
+
+    <!-- Externe JavaScript-Logik einbinden -->
+    <script src="script.js" defer></script>
 </body>
 </html>

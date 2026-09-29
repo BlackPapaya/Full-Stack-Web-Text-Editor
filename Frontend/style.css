@@ -3,7 +3,7 @@ body {
     max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
-    background-color: #fdfbf7; /* Ein sanfter, warmer Hintergrund */
+    background-color: lightblue; /* Ein sanfter, warmer Hintergrund */
     color: #333;
 }
 
@@ -25,9 +25,6 @@ label {
     font-weight: bold;
 }
 
-background {
-    color:lightblue;
-}
 
 input[type="text"],
 input[type="password"] {
